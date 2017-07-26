@@ -2,7 +2,7 @@
 
 setGeneric("readFeatures", function(files, upstream=2000, downstream=0) standardGeneric("readFeatures"))
 
-setMethod("readFeatures", signature(files = "character"), function(location, upstream, downstream){
+setMethod("readFeatures", signature(files = "character"), function(files, upstream, downstream){
   message("Reading gtf file ... \r")
   gtf <- rtracklayer::import(files,format = "gtf")
   gtf <- as.data.frame(gtf)
