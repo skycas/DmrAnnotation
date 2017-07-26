@@ -9,7 +9,7 @@ setMethod("readFeatures", signature(files = "character"), function(files, upstre
   
   message("Transcripts Features, Please wait patiently ... \r")
   transcript_id <- unique(gtf$transcript_id)
-  bed <- lapply(transcript_id, function(x) {gtf[gtf$transcript_id == x,]})
+  bed <- suppressWarnings(lapply(transcript_id, function(x) {gtf[gtf$transcript_id == x,]}))
   names(bed) <- transcript_id
   
   message("Exon coordinates ... \r")
