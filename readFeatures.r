@@ -43,6 +43,7 @@ setMethod("readFeatures", signature(files = "character"), function(files, upstre
   
   message("Promoter coordinates ... \r")
   promoter <- lapply(bed,function(x){
+    x = as.data.frame(x)
     if (x$strand == "+") {
       start = min(x$start) - upstream + downstream
       end = min(x$start) - 1
