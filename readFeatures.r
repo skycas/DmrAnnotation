@@ -5,7 +5,7 @@ setGeneric("readFeatures", function(files, upstream=2000, downstream=0) standard
 setMethod("readFeatures", signature(files = "character"), function(files, upstream, downstream){
   message("Reading gtf file ... \r")
   gtf <- rtracklayer::import(files,format = "gtf")
-  gtf <- as.data.frame(gtf)
+  gtfx <- as.data.frame(gtf)
   
   message("Transcripts Features, Please wait patiently ... \r")
   transcript_id <- unique(gtf$transcript_id)
@@ -14,7 +14,7 @@ setMethod("readFeatures", signature(files = "character"), function(files, upstre
   
   message("Exon coordinates ... \r")
   bed <- lapply(bed, function(x){x[x$type == "exon",]})
-  exon <- bed
+  exons <- gtfx[gtfx$type == "exon", ]
   
   message("Intron coordinates ... \r")
   intron <- lapply(bed, function(x) {
@@ -62,9 +62,7 @@ setMethod("readFeatures", signature(files = "character"), function(files, upstre
   })
   
   introns <- do.call(rbind,intron)
-  exons <- as.data.frame(do.call(rbind,exon))
-  promoters <- as.data.frame(do.call(rbind,promoter))
-  colnames(promoters) <- colnames(exons)
+  promoters <- do.call(rbind,promoter)
   features <- suppressWarnings(rbind(promoters,exons,introns))
   
 })
