@@ -18,6 +18,7 @@ setMethod("readFeatures", signature(files = "character"), function(files, upstre
   
   message("Intron coordinates ... \r")
   intron <- lapply(bed, function(x) {
+    x = as.data.frame(x)
     n = dim(x)[1]
     if (n == 1) {
       tmp <- c()
