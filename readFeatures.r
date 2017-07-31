@@ -1,6 +1,6 @@
 ### readFeatures ###
 
-# Function: gtf2bed, calculating the promoter, 5'utr, exon/cds, intron, 3'utr of genes
+# Function: Calculate the promoter, 5'utr, exon/cds, intron, 3'utr of genes
 # Author: Fuhui Xiao
 # Notes: A little slow, however, you need only one time to calculate the coordinate of genes 
 
