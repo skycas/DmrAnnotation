@@ -4,9 +4,9 @@
 # Author: Fuhui Xiao
 # Notes: A little slow, however, you need only one time to calculate the coordinate of genes 
 
-setGeneric("readFeatures", function(files, upstream=2000, downstream=0) standardGeneric("readFeatures"))
+setGeneric("readFeatures", function(files, upstream=2000) standardGeneric("readFeatures"))
 
-setMethod("readFeatures", signature(files = "character"), function(files, upstream, downstream){
+setMethod("readFeatures", signature(files = "character"), function(files, upstream){
   message("Reading gtf file ... \r")
   gtf <- rtracklayer::import(files,format = "gtf")
   gtf <- as.data.frame(gtf)
